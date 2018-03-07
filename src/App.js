@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import rgbHex from 'rgb-hex'
-import Palette from 'react-palette'
-import './App.css';
 import ColorThief from 'color-thief'
+import './App.css'
 
 require('tracking')
 require('tracking/build/data/face')
@@ -53,7 +52,7 @@ class App extends Component {
             var t = colorThief.getPalette(this.refs.imageNew, 10);
 
             var c = t.map((color) =>{
-              return rgbHex(color[0],color[1],color[2])
+              return rgbHex(color[0], color[1], color[2])
             })
 
             this.setState({colors: c})
@@ -77,27 +76,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="demo-container">
+        <div>
           <canvas ref="imageNew" className="newImage" ></canvas>
           <video className="oldImage" ref="cameraOutput" height="480" width="640" preload="true" autoPlay loop muted></video> 
           <canvas className="oldImage" ref="canvas" height="480" width="640"></canvas>
-          <div>
+          <div className="boxes">
             {this.state.colors.map((color) => {
-              return <div style={{ backgroundColor: '#'+color, width:50, height:50 }}/>
+              return <div key={color} className="smallBox" style={{ backgroundColor: '#'+color}}/>
             })}
           </div>
-          {/* <Palette image={this.state.image}>
-            {palette => (
-              <div>
-                <div style={{ backgroundColor: palette.vibrant, width:50, height:50 }}/>
-                <div style={{ backgroundColor: palette.darkMuted, width:50, height:50 }}/>
-                <div style={{ backgroundColor: palette.darkVibrant, width:50, height:50 }}/>
-                <div style={{ backgroundColor: palette.lightMuted, width:50, height:50 }}/>
-                <div style={{ backgroundColor: palette.lightVibrant, width:50, height:50 }}/>
-                <div style={{ backgroundColor: palette.muted, width:50, height:50 }}/>
-              </div>
-            )}
-          </Palette> */}
         </div>
       </div>
     );
