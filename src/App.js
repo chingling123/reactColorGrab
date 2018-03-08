@@ -31,20 +31,21 @@ class App extends Component {
           let newContext = this.refs.imageNew.getContext('2d')
           var scaleX = this.refs.cameraOutput.videoWidth/this.refs.canvas.width
           var scaleY = this.refs.cameraOutput.videoHeight/this.refs.canvas.height
-          if(event.data.length > 0 ){
-            console.log(event.data[0].height)
-            this.refs.imageNew.width = event.data[0].width*scaleX
-            this.refs.imageNew.height = this.refs.cameraOutput.clientHeight-((event.data[0].y+event.data[0].height)*scaleY)
-            // newContext.clearRect(0, 0, 640, 480)
-            newContext.drawImage(this.refs.cameraOutput, 
-              event.data[0].x*scaleX, 
-              (event.data[0].y+event.data[0].height)*scaleY,
+           if(event.data.length > 0 ){
+          //   console.log(event.data[0].height)
+             this.refs.imageNew.height = event.data[0].width*scaleX
+             this.refs.imageNew.width = this.refs.cameraOutput.videoWidth-(event.data[0].y)*scaleY
+             //newContext.clearRect(0, 0, 640, 480)
+             console.log(this.refs.cameraOutput.videoWidth-(event.data[0].y)*scaleY)
+             newContext.drawImage(this.refs.cameraOutput,
+              (event.data[0].height+event.data[0].y)*scaleY,
+              (this.refs.cameraOutput.videoHeight/2)-event.data[0].x*scaleX,
+              this.refs.cameraOutput.videoWidth-(event.data[0].y)*scaleY,
               event.data[0].width*scaleX,
-              this.refs.cameraOutput.videoHeight-((event.data[0].y+event.data[0].height)*scaleY),
               0,
               0,
-              event.data[0].width*scaleX, 
-              this.refs.cameraOutput.videoHeight-((event.data[0].y+event.data[0].height)*scaleY)
+              this.refs.cameraOutput.videoWidth-(event.data[0].y)*scaleY,
+              event.data[0].width*scaleX
             )
             // console.log(this.refs.canvas.toDataURL())
             this.setState({face:1})
@@ -60,7 +61,7 @@ class App extends Component {
           context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height)
           event.data.forEach(function(rect) {
             context.strokeStyle = '#f00'
-            context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+            context.strokeRect(rect.y, 220-(rect.x), rect.height, rect.width)
             context.font = '11px Helvetica'
             context.fillStyle = "#fff"
             context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11)
