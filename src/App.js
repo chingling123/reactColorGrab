@@ -48,7 +48,7 @@ class App extends Component {
               event.data[0].width*scaleX
             )
             // console.log(this.refs.canvas.toDataURL())
-            this.setState({face:1})
+            //this.setState({face:1})
 
             var t = colorThief.getPalette(this.refs.imageNew, 10);
 
@@ -61,7 +61,7 @@ class App extends Component {
           context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height)
           event.data.forEach(function(rect) {
             context.strokeStyle = '#f00'
-            context.strokeRect(rect.y, 220-(rect.x), rect.height, rect.width)
+            context.strokeRect(rect.y, 560-(rect.x), rect.height, rect.width)
             context.font = '11px Helvetica'
             context.fillStyle = "#fff"
             context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11)
@@ -79,8 +79,8 @@ class App extends Component {
       <div className="App">
         <div>
           <canvas ref="imageNew" className="newImage" ></canvas>
-          <video className="oldImage" ref="cameraOutput" height="480" width="640" preload="true" autoPlay loop muted></video> 
-          <canvas className="oldImage" ref="canvas" height="480" width="640"></canvas>
+          <video className="oldImage" ref="cameraOutput" height="720" width="1280" preload="true" autoPlay loop muted></video> 
+          <canvas className="oldImage" ref="canvas" height="720" width="1280"></canvas>
           <div className="boxes">
             {this.state.colors.map((color) => {
               return <div key={color} className="smallBox" style={{ backgroundColor: '#'+color}}/>

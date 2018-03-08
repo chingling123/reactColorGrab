@@ -7,11 +7,12 @@
 .oldImage {
   position: absolute;
   transform: rotate(90deg);
-  left: -80px;
+  left: -280px;
+  top: 280px;
 }
 
 .newImage{
-  /* display: none; */
+  display: none;
   z-index: 11;
   right: 0px;
   position: absolute;
@@ -26,4 +27,14 @@
 .boxes{
   z-index: 10;
   position: absolute;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
 }
